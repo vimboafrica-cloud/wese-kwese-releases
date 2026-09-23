@@ -23,6 +23,11 @@ The installer walks you through the port, time zone, backup folder, and database
 choice, then opens your browser on a first-run page to create the first Admin
 account.
 
+**Already have it installed?** Run the newer Setup.exe over the top to upgrade — it
+detects the existing install, shows a page confirming your settings will be kept
+unchanged, and skips the setup questions. Your data is kept and a backup is taken
+automatically first.
+
 ## User manual
 
 The full [User Manual](user-manual.html) covers everything from installing it
