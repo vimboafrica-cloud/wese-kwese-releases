@@ -23,6 +23,13 @@ The installer walks you through the port, time zone, backup folder, and database
 choice, then opens your browser on a first-run page to create the first Admin
 account.
 
+## User manual
+
+The full [User Manual](user-manual.html) covers everything from installing it
+through day-to-day use, multi-currency, backups, and troubleshooting.
+[Read it online](https://vimboafrica-cloud.github.io/wese-kwese-releases/user-manual.html)
+or download the file above and open it in any browser.
+
 ## Support
 
 - E-mail: wesekwese@gmail.com

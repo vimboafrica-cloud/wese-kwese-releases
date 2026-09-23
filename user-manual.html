@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wese~Kwese User Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16211c; --ink-soft:#4b584f; --paper:#faf8f3; --paper-raised:#ffffff;
+    --line:#e2ddd0; --accent:#1f6b55; --accent-soft:#e8f2ee; --accent-ink:#0f3d30;
+    --warn:#a8551f; --warn-soft:#fbeee2; --code-bg:#f0ede4; --danger:#a3312a; --danger-soft:#fbeaea;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#ecf3ee; --ink-soft:#a9b6ae; --paper:#121814; --paper-raised:#1a231d;
+      --line:#2b352e; --accent:#4fae8c; --accent-soft:#1c2f27; --accent-ink:#bfe9d7;
+      --warn:#e8a374; --warn-soft:#332318; --code-bg:#1e2620; --danger:#e2857c; --danger-soft:#3a201d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#ecf3ee; --ink-soft:#a9b6ae; --paper:#121814; --paper-raised:#1a231d;
+    --line:#2b352e; --accent:#4fae8c; --accent-soft:#1c2f27; --accent-ink:#bfe9d7;
+    --warn:#e8a374; --warn-soft:#332318; --code-bg:#1e2620; --danger:#e2857c; --danger-soft:#3a201d;
+  }
+
+  *{box-sizing:border-box}
+  body{ background:var(--paper); color:var(--ink); margin:0; font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif; font-size:16px; line-height:1.65; }
+  h1,h2,h3,h4{ font-family:"Fraunces", Georgia, serif; font-weight:600; color:var(--ink); text-wrap:balance; }
+  a{ color:var(--accent-ink); }
+  code, .kbd{ font-family:ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size:.9em; background:var(--code-bg); padding:1px 6px; border-radius:5px; }
+
+  .shell{ display:grid; grid-template-columns:266px minmax(0,1fr); gap:0; max-width:1180px; margin:0 auto; }
+  @media (max-width:900px){ .shell{ grid-template-columns:1fr; } }
+
+  .side{ position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto; padding:26px 18px 40px 24px; border-right:1px solid var(--line); }
+  @media (max-width:900px){
+    .side{ position:static; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:18px 16px; }
+    .side .groups{ display:flex; gap:18px; overflow-x:auto; padding-bottom:4px; }
+    .side .group{ flex:0 0 auto; }
+    .side nav a{ white-space:nowrap; }
+  }
+  .sidehead{ font-family:"Fraunces",serif; font-size:1.1rem; font-weight:700; margin:0 0 2px; }
+  .sidesub{ color:var(--ink-soft); font-size:.82rem; margin:0 0 22px; }
+  .group{ margin-bottom:6px; }
+  .group-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-soft); opacity:.75; margin:16px 8px 5px; }
+  .group:first-child .group-label{ margin-top:0; }
+  .side nav a{ display:block; text-decoration:none; color:var(--ink-soft); font-size:.89rem; padding:6px 9px; border-radius:7px; }
+  .side nav a:hover{ background:var(--accent-soft); color:var(--accent-ink); }
+
+  main{ padding:44px 32px 100px; min-width:0; }
+  @media (max-width:900px){ main{ padding:26px 18px 70px; } }
+
+  .intro{ max-width:660px; margin:0 0 46px; }
+  .intro h1{ font-size:2.1rem; margin:0 0 8px; }
+  .intro .tagline{ color:var(--ink-soft); font-size:1.05rem; margin:0 0 20px; }
+  .intro p{ margin:0 0 12px; }
+
+  section.chapter{ max-width:700px; margin:0 0 58px; scroll-margin-top:18px; }
+  section.chapter h2{ font-size:1.55rem; margin:0 0 4px; display:flex; align-items:center; gap:10px; }
+  section.chapter h2 .n{ font-family:"Fraunces",serif; font-weight:600; font-size:.85rem; color:var(--accent-ink); background:var(--accent-soft); border-radius:999px; padding:2px 11px; }
+  .sub{ color:var(--ink-soft); font-size:.94rem; margin:0 0 20px; }
+  section.chapter h3{ font-size:1.12rem; margin:26px 0 8px; }
+  section.chapter p{ margin:0 0 12px; }
+  section.chapter ul, section.chapter ol{ margin:0 0 14px; padding-left:22px; }
+  section.chapter li{ margin-bottom:6px; }
+  section.chapter li::marker{ color:var(--accent-ink); }
+
+  ol.steps{ list-style:none; padding:0; margin:0 0 16px; counter-reset:step; }
+  ol.steps li{ counter-increment:step; position:relative; padding:2px 0 2px 34px; margin-bottom:12px; }
+  ol.steps li::before{ content:counter(step); position:absolute; left:0; top:0; width:24px; height:24px; border-radius:50%; background:var(--accent-soft); color:var(--accent-ink); font-weight:700; font-size:.82rem; display:flex; align-items:center; justify-content:center; }
+
+  .box{ background:var(--paper-raised); border:1px solid var(--line); border-radius:12px; padding:16px 19px; margin:18px 0; font-size:.94rem; }
+  .box h4{ margin:0 0 7px; font-size:.95rem; color:var(--accent-ink); }
+  .box.warn{ border-left:3px solid var(--warn); }
+  .box.warn h4{ color:var(--warn); }
+  .box.danger{ border-left:3px solid var(--danger); }
+  .box.danger h4{ color:var(--danger); }
+  .box ul{ margin:0; padding-left:19px; }
+  .box li{ margin-bottom:4px; }
+
+  table.ref{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:.92rem; }
+  table.ref th, table.ref td{ text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.ref th{ color:var(--ink-soft); font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; }
+  table.ref tr:last-child td{ border-bottom:none; }
+
+  .path{ font-size:.85rem; color:var(--ink-soft); }
+  .path b{ color:var(--ink); font-weight:600; }
+
+  hr.sep{ border:none; border-top:1px solid var(--line); margin:0 0 58px; max-width:700px; }
+
+  .toc-jump{ font-size:.84rem; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side">
+    <p class="sidehead">Wese~Kwese</p>
+    <p class="sidesub">User manual</p>
+    <div class="groups">
+    <div class="group">
+      <p class="group-label">Getting started</p>
+      <nav>
+        <a href="#intro">What it is</a>
+        <a href="#install">Installing it</a>
+        <a href="#setup">First-time setup</a>
+      </nav>
+    </div>
+    <div class="group">
+      <p class="group-label">Students</p>
+      <nav>
+        <a href="#students">Adding &amp; finding students</a>
+        <a href="#leaving">When a student leaves</a>
+        <a href="#promotion">End-of-year promotion</a>
+        <a href="#oldrecords">Old records</a>
+      </nav>
+    </div>
+    <div class="group">
+      <p class="group-label">Money</p>
+      <nav>
+        <a href="#invoices">Fees &amp; invoices</a>
+        <a href="#payments">Taking a payment</a>
+        <a href="#reports">Reports</a>
+        <a href="#spending">Spending</a>
+        <a href="#otherincome">Other income</a>
+        <a href="#currency">Multi-currency</a>
+        <a href="#monthend">Month end</a>
+      </nav>
+    </div>
+    <div class="group">
+      <p class="group-label">Administration</p>
+      <nav>
+        <a href="#users">Users &amp; roles</a>
+        <a href="#backups">Backups</a>
+        <a href="#restore">Restoring a backup</a>
+        <a href="#import">Bringing over old data</a>
+      </nav>
+    </div>
+    <div class="group">
+      <p class="group-label">Help</p>
+      <nav>
+        <a href="#faq">Troubleshooting</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="intro" id="intro">
+      <h1>Wese~Kwese User Manual</h1>
+      <p class="tagline">Everything you need to run your school's fees on it, from installing it to closing a term.</p>
+      <p>Wese~Kwese is a fees system that runs on one computer in the school office — no internet connection needed
+        day to day, no monthly subscription. Every other computer on the school network opens it in a web browser.
+        Receipts, invoices, debtors and cash reports, fund tracking, and support for more than one currency (USD
+        and ZiG side by side, or converted between them) are all built in.</p>
+      <p>This manual follows the same order as the app's own <b>Getting started</b> checklist on the Home page —
+        work through it top to bottom the first time, then use the sidebar to jump straight to whatever you need
+        later.</p>
+    </div>
+
+    <!-- ========================= INSTALLING ========================= -->
+    <section class="chapter" id="install">
+      <h2><span class="n">1</span>Installing it</h2>
+      <p class="sub">On the one PC in the office that will act as the server.</p>
+
+      <ol class="steps">
+        <li>Download the installer and double-click it on the PC that will be the server. This only needs doing
+          once, on one computer.</li>
+        <li>Windows shows <b>"Windows protected your PC"</b> — this is normal for a small independent app that
+          isn't code-signed, not a virus warning. Click <b>More info</b>, then <b>Run anyway</b>.</li>
+        <li>The wizard asks a few questions:
+          <table class="ref">
+            <tr><th>Question</th><th>What to answer</th></tr>
+            <tr><td>Port</td><td><code>8000</code> is fine unless something else on this PC already uses it.</td></tr>
+            <tr><td>Time zone</td><td><code>Africa/Harare</code>.</td></tr>
+            <tr><td>Backup folder</td><td>A folder your cloud-sync app (e.g. MEGA) watches, so a copy leaves the building automatically every day.</td></tr>
+            <tr><td>Database</td><td><b>Built-in (SQLite)</b> — nothing else to install, fine for one school. Only choose PostgreSQL if you already run it.</td></tr>
+            <tr><td>Options</td><td>Desktop shortcut; allow other school PCs through the firewall (local network only); daily backup at 17:00.</td></tr>
+          </table>
+        </li>
+        <li>When it finishes, your browser opens on its own, on the <b>first-run page</b>. This only works on the
+          server PC itself, and only once — it's where you create the very first Admin account. Choose a strong
+          username and password.</li>
+        <li>Other PCs on the school network open <code>http://&lt;server-PC-name&gt;:8000/</code> in any browser.</li>
+      </ol>
+
+      <div class="box warn">
+        <h4>Upgrading later</h4>
+        <p>Run a newer Setup.exe over the top — it keeps your data and settings, and takes a backup first
+          automatically. Never uninstall to upgrade.</p>
+      </div>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= SETUP ========================= -->
+    <section class="chapter" id="setup">
+      <h2><span class="n">2</span>First-time setup</h2>
+      <p class="sub">The Home page shows a <b>Getting started</b> checklist until every one of these is done.</p>
+
+      <h3>1. School details</h3>
+      <p>Menu → <b>School details</b>. Type the school's name exactly as it should appear on receipts, invoices,
+        reports and exported files — this is the first thing every fresh install asks for. Address, phone and
+        e-mail are optional and also print on documents.</p>
+
+      <h3>2. The current term</h3>
+      <p><span class="path">Menu → <b>Setup</b> → Terms → Add term.</span> Enter the year, the term number, and its
+        opening and closing dates (used for part-term fee calculations later), then tick <b>Is current</b> — new
+        invoices and payments default to whichever term is current.</p>
+
+      <h3>3. Classes</h3>
+      <p><span class="path">Setup → Classes → Add class.</span> Give each a name and a <b>Sort order</b> number —
+        this controls the order classes are promoted in at the end of the year, so number them from youngest to
+        oldest.</p>
+
+      <h3>4. Fee categories and fee items</h3>
+      <p><b>Fee categories</b> group students who pay the same amount (Day Scholar, Boarder, Staff Child...).
+        <b>Fee items</b> are what the fees are made of (Tuition, Levy, Building Fund...) — each item is also its
+        own fund account that income and spending are tracked against, so keep the list to what you genuinely want
+        to track separately. Both are under <span class="path">Setup</span>.</p>
+
+      <h3>5. Fee structures</h3>
+      <p><span class="path">Setup → Fee structures → Add fee structure.</span> One structure per (fee category,
+        term, currency) combination, listing how much each fee item costs. This is what generates every student's
+        invoice — a category with no structure for the current term simply won't get invoiced.</p>
+
+      <h3>6. A receipt book</h3>
+      <p><span class="path">Setup → Receipt books → Add receipt book.</span> Just a number range, e.g. 1 to 999.
+        Leave <b>Method</b> blank for one book used by every payment method (the normal case) — only set it if this
+        school keeps a separate paper book per payment method.</p>
+
+      <h3>7. The other people who'll use it</h3>
+      <p><span class="path">Menu → Users → Add a user.</span> See <a href="#users">Users &amp; roles</a> below for
+        what each role can do.</p>
+
+      <h3>8. Students</h3>
+      <p>Add them one at a time, or use the <a href="#import">Access importer</a> if you're moving off the old
+        system. See <a href="#students">Adding &amp; finding students</a>.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= STUDENTS ========================= -->
+    <section class="chapter" id="students">
+      <h2><span class="n">3</span>Adding &amp; finding students</h2>
+
+      <h3>Adding a student</h3>
+      <p><span class="path">Students → Add student.</span> The <b>student number</b> is generated automatically
+        (two initials plus a running number, e.g. <code>AM00001</code>) and can never be typed in or changed — it's
+        not on the form at all. Fill in class, fee category, and <b>Bill fees in</b> (which currency this student
+        is invoiced in — see <a href="#currency">Multi-currency</a>).</p>
+
+      <h3>Finding a student</h3>
+      <p>The <b>Students</b> list searches by name or student number, and filters by class or status. Every
+        student's own page shows their full history: every invoice and payment they've ever had, all in one
+        place.</p>
+
+      <h3>Class lists</h3>
+      <p><span class="path">Students → Class list.</span> One class, or every class one per printed page, with
+        optional empty ruled columns for a register or mark sheet. Shows no money figures, so any signed-in staff
+        member can print it.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= INVOICES ========================= -->
+    <section class="chapter" id="invoices">
+      <h2><span class="n">4</span>Fees &amp; invoices</h2>
+
+      <h3>Generating invoices</h3>
+      <p><span class="path">Invoices → Generate term invoices.</span> Pick a term and it creates an invoice for
+        every active student who doesn't already have one — safe to run again later, existing invoices are left
+        alone. A student is billed from whichever fee structure matches their fee category <i>and</i> their own
+        currency; if none matches, they're listed as skipped so you can add the missing structure and run it
+        again.</p>
+      <p>A single student's invoice can also be created on the spot from their own page, or from the payment
+        screen if the term hasn't been billed for them yet.</p>
+
+      <h3>Reducing fees (Admin only)</h3>
+      <p>Open the invoice → <b>Adjust fees</b>. Covers a part-term fee for someone who left early, a bursary, a
+        discount, a correction, or a debt written off. It can never reduce an invoice by more than what's still
+        owing, needs a reason, and is recorded against who did it and when. <b>Fee adjustments</b> lists every one
+        made; an Admin can void one to put the fees back exactly as they were. Only Admins can reduce fees, so the
+        person collecting money is never the same person who can write debts off.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= PAYMENTS ========================= -->
+    <section class="chapter" id="payments">
+      <h2><span class="n">5</span>Taking a payment</h2>
+
+      <ol class="steps">
+        <li>Find the student and open their page (search by name or student number).</li>
+        <li>Click <b>Take payment</b>.</li>
+        <li>Pick which term's invoice this is towards — it shows what's still owing on each one.</li>
+        <li>Type the amount, the date, and how it was paid (Cash, Bank, Ecocash, Telecash, Other).</li>
+        <li>Click <b>Record payment</b> — you land straight on the official receipt, numbered automatically from
+          the active receipt book.</li>
+      </ol>
+
+      <div class="box">
+        <h4>A payment can never overpay an invoice</h4>
+        <p>The amount is capped at what's still owing; the form tells you the limit as you type. Money is split
+          across the invoice's fee items in proportion automatically (a $500 payment towards a $500 Tuition +
+          $1,500 Levy invoice puts $125 towards Tuition and $375 towards Levy) — this is what feeds the fund
+          balances in <a href="#spending">Spending</a>.</p>
+      </div>
+
+      <h3>Printing and downloading</h3>
+      <p><b>Print</b> sends the receipt straight to the browser's print dialog. <b>Download</b> offers PDF, Word,
+        Excel or CSV — every receipt, invoice and report has the same button, and every file starts with the
+        school's name, printed by whom, and when.</p>
+
+      <h3>Voiding a payment</h3>
+      <p>Nothing is ever deleted or edited once money has moved. <span class="path">Payments → (find it) → Void</span>,
+        type a reason — the record stays, struck through in lists and exports, with who voided it and why. If some
+        of a receipt's money has already been spent from a fund, voiding is refused until that spending is voided
+        first, so a fund can never go below zero.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= REPORTS ========================= -->
+    <section class="chapter" id="reports">
+      <h2><span class="n">6</span>Reports</h2>
+
+      <table class="ref">
+        <tr><th>Report</th><th>Answers</th></tr>
+        <tr><td><b>Debtors</b></td><td>Who still owes money, for a term — filter by class. Every row links straight to Take payment.</td></tr>
+        <tr><td><b>Daily cash</b></td><td>How much came in, and how, for any date range — split by payment method and by who received it. Run at the end of every day.</td></tr>
+        <tr><td><b>Funds</b></td><td>What's actually in each fund right now — opening balance, income, spending, closing balance, per fee item.</td></tr>
+      </table>
+      <p>All three, plus the Home page's own term summary tiles, download as PDF, Word, Excel or CSV. A school
+        taking more than one currency sees each currency's figures as its own separate block on every report —
+        see <a href="#currency">Multi-currency</a>.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= SPENDING ========================= -->
+    <section class="chapter" id="spending">
+      <h2><span class="n">7</span>Spending</h2>
+      <p>Every fee item doubles as a fund: what's been received for it, less what's been spent from it. <span class="path">Spending → Record spending</span>
+        shows each fund's current balance right in the "Spend from fund" list, and <b>you can only spend what a
+        fund holds</b> — an over-spend is refused with a message saying exactly how much is available.</p>
+      <p>Voiding a piece of spending puts the money back into the fund. Voiding a <i>receipt</i> whose money has
+        already been spent is refused until that spending is voided first — a fund can never be pushed below
+        zero.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= OTHER INCOME ========================= -->
+    <section class="chapter" id="otherincome">
+      <h2><span class="n">8</span>Other income</h2>
+      <p>Money that isn't school fees — uniform sales, hall hire, that kind of thing. <span class="path">Other income → Record other income</span>,
+        choosing a category from a list rather than typing one, so the same thing is always spelled the same way
+        in reports. No category yet? Click <b>Add other income category</b> right there on the form — nothing
+        you've already typed is lost.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= LEAVING ========================= -->
+    <section class="chapter" id="leaving">
+      <h2><span class="n">9</span>When a student leaves</h2>
+      <p>Nobody is ever deleted — their receipts have to stay on record. Open the student and click <b>Record leaving</b>
+        instead.</p>
+
+      <ol class="steps">
+        <li>Choose the reason: transferred, completed school, withdrawn, stopped attending, expelled, passed
+          away, entered by mistake or a duplicate, or other.</li>
+        <li>Enter the date, and where they're going if that's useful (a transfer's new school name, say).</li>
+        <li>If they still owe fees, the page tells you — but lets you record the leaving anyway.</li>
+      </ol>
+
+      <p>They drop out of class lists, the active count, and new invoices, but anything still owing stays on the
+        Debtors report until it's paid, marked with the reason. A printable <b>student statement</b> shows a
+        receiving school exactly where the account stands — whether fees are cleared, and the leaving details.</p>
+
+      <div class="box">
+        <h4>Part-term fees, worked out automatically</h4>
+        <p>For a student who left partway through a term whose dates are set (see <a href="#setup">First-time
+          setup</a>), the student's own page suggests a fair fee for the time actually attended, and offers to
+          reduce the invoice by the rest in one click.</p>
+      </div>
+
+      <p><b>Bring back as an active student</b> undoes a leaving completely — for someone entered by mistake, or
+        who's coming back.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= PROMOTION ========================= -->
+    <section class="chapter" id="promotion">
+      <h2><span class="n">10</span>End-of-year promotion</h2>
+      <p><span class="path">Students → End-of-year promotion.</span> Moves every class up in one go: each class
+        gets a suggested destination (the next class by the Sort order set under Setup → Classes, or the last
+        class finishing school), you tick anyone repeating the year, review the whole plan, and confirm. Nothing
+        changes until you confirm.</p>
+      <p>Students keep their full fee history, and past invoices keep the class they were actually billed in at
+        the time — promoting a class never rewrites history. The latest promotion can be undone from the same
+        page; anyone whose record has changed since is left as they are.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= OLD RECORDS ========================= -->
+    <section class="chapter" id="oldrecords">
+      <h2><span class="n">11</span>Old records <span style="font-weight:400; font-size:.7em; color:var(--ink-soft)">(Admin only)</span></h2>
+      <p><span class="path">Students → Old records.</span> Sets how long former students' personal details (name,
+        birth date, address, parents, phone, doctor, notes) are kept after they leave — default 7 years. Past that
+        period, and only once a student owes nothing, an Admin can erase their personal details in bulk, or erase
+        one student individually on request at any time.</p>
+      <p>Erasing replaces the name with "Former Student" but keeps the student number, every invoice and every
+        receipt — reports and totals still add up correctly. It cannot be undone, and older backup files still
+        hold the details as they were when each backup was made.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= CURRENCY ========================= -->
+    <section class="chapter" id="currency">
+      <h2><span class="n">12</span>Multi-currency</h2>
+      <p>Most schools need only the one currency, already set up. A school that takes more than one (USD and ZiG,
+        say) adds a row per currency under <span class="path">Setup → Currencies</span> (code, symbol, and which
+        one is the default), then sets up a fee structure in each currency for the same category and term, and
+        gives every student a <b>Bill fees in</b> currency on their own record.</p>
+
+      <h3>Currency mode</h3>
+      <p><span class="path">School details → Currency mode.</span> Decides what happens when a payment doesn't
+        match its invoice's currency — switchable at any time as the currency situation changes; switching never
+        rewrites a payment already recorded.</p>
+      <table class="ref">
+        <tr><th>Mode</th><th>Behaviour</th></tr>
+        <tr><td><b>Strict</b> (the default)</td><td>A payment can only be in its invoice's own currency. Nothing is ever converted or added together — every report shows each currency as its own separate block.</td></tr>
+        <tr><td><b>Blended</b></td><td>At the till, a payment can be received in a <i>different</i> currency and converted into the invoice's currency using an exchange rate. Reports still stay exactly as simple as Strict mode — they only ever see the already-converted figure, never a mix.</td></tr>
+      </table>
+
+      <h3>Using Blended mode</h3>
+      <ol class="steps">
+        <li>Keep exchange rates current under <span class="path">Setup → Exchange rates</span> — add a new row
+          whenever the rate you're using changes (however you source it: bank, interbank, parallel market, it
+          doesn't matter to the system).</li>
+        <li>On the payment screen, tick <b>Received in a different currency?</b>, choose which currency, and type
+          how much was actually handed over and the rate.</li>
+        <li>The system converts it and applies the result to the bill. The receipt shows both figures — what was
+          received, and what it became.</li>
+      </ol>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= MONTH END ========================= -->
+    <section class="chapter" id="monthend">
+      <h2><span class="n">13</span>Month end</h2>
+      <p><span class="path">Money menu → Month end.</span> Closes a calendar month — once closed, nothing (a
+        payment, spending, an adjustment) can be recorded or voided in it until an Admin reopens it. Use this once
+        a month's books are settled, so nothing gets backdated into them by accident.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= USERS ========================= -->
+    <section class="chapter" id="users">
+      <h2><span class="n">14</span>Users &amp; roles</h2>
+      <table class="ref">
+        <tr><th></th><th>Admin</th><th>Bursar</th><th>General</th></tr>
+        <tr><td>See students (no money)</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
+        <tr><td>Payments, invoices, reports, spending, other income</td><td>&#10003;</td><td>&#10003;</td><td>—</td></tr>
+        <tr><td>Void a record (needs a reason), close a month</td><td>&#10003;</td><td>&#10003;</td><td>—</td></tr>
+        <tr><td>Reopen a closed month</td><td>&#10003;</td><td>—</td><td>—</td></tr>
+        <tr><td>Setup, users, activity log, fee adjustments</td><td>&#10003;</td><td>—</td><td>—</td></tr>
+      </table>
+      <p><span class="path">Users → Add a user.</span> A new (or reset) password is temporary — the person must
+        choose their own at first sign-in. Five wrong passwords in a row locks a username for 15 minutes; an Admin
+        can unlock it sooner from the Users page.</p>
+      <p><b>Automatic sign-out:</b> anyone who hasn't touched the screen for a while (3 minutes by default) gets a
+        30-second warning, then is signed out — <span class="path">Users → Sign-out timing</span> to change it
+        (1–60 minutes).</p>
+      <p><b>Forgot the only Admin's password?</b> On the server PC: Start Menu → Wese~Kwese → <b>Reset a forgotten
+        Wese~Kwese password</b> (needs Windows administrator permission). It lists every username, prints a
+        one-time temporary password, and also clears a lockout.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= BACKUPS ========================= -->
+    <section class="chapter" id="backups">
+      <h2><span class="n">15</span>Backups</h2>
+      <p>A backup runs automatically every day at 17:00 (the newest 30 are kept), and <span class="path">Backups → Back up now</span>
+        makes one on demand any time — worth doing right before something like an upgrade.</p>
+
+      <h3>E-mailing a copy</h3>
+      <p>Every backup can also e-mail itself to up to 5 addresses, as an <b>AES-256 password-protected zip</b> —
+        the database holds every student and payment record, so nothing is e-mailed until a zip password of at
+        least 8 characters is set. Write that password down somewhere safe: without it, the e-mailed backups
+        can't be opened. Open one with the free <b>7-Zip</b>.</p>
+
+      <div class="box warn">
+        <h4>Gmail (and most providers) need an "app password"</h4>
+        <p>Your normal Gmail password won't work here — Google blocks it for apps like this. Instead:</p>
+        <ol class="steps">
+          <li>Turn on <b>2-Step Verification</b> on the Google account you're sending from (Google Account →
+            Security), if it isn't on already.</li>
+          <li>Go to <code>myaccount.google.com/apppasswords</code>, name it (e.g. "Wese-Kwese Backups"), and
+            create it — Google shows a 16-character password once.</li>
+          <li>Paste that 16-character password into <b>Mail account password</b> on the Backups page — not your
+            normal Gmail password.</li>
+          <li>Make sure the <b>Mail provider</b> is set to Gmail (server <code>smtp.gmail.com</code>, port
+            <code>587</code>, security <b>STARTTLS</b>) — the wrong port/security combination shows a "mail
+            server hung up" error.</li>
+          <li>Double-check the app password was created under the <i>same</i> Google account entered as the
+            username — an app password only works for the account it was made under.</li>
+        </ol>
+        <p>Click <b>Save</b>, then <b>Send a test e-mail</b> to confirm it went through.</p>
+      </div>
+
+      <p>If the e-mail can't go out for any reason, the copy on this PC is still made regardless, and the reason
+        is shown on the Backups page and as a warning on the Admin's Home page.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= RESTORE ========================= -->
+    <section class="chapter" id="restore">
+      <h2><span class="n">16</span>Restoring a backup</h2>
+      <p>On the server PC: Start Menu → Wese~Kwese → <b>Restore a Wese~Kwese backup</b> (needs Windows
+        administrator permission, since it's about to replace the live data — not done from inside the app
+        itself).</p>
+      <ol class="steps">
+        <li>It lists the backups on this PC, or takes the path of a backup file (or an e-mailed zip, plus its
+          password).</li>
+        <li>Shows what's <i>in</i> the backup next to what Wese~Kwese holds <i>now</i>, and warns about anything
+          that would be lost.</li>
+        <li>Nothing happens until you type <code>RESTORE</code>.</li>
+        <li>It saves a safety copy of the current data first (never overwritten), swaps the backup in, upgrades
+          it if it came from an older version, and restarts the server.</li>
+      </ol>
+      <div class="box danger">
+        <h4>Practise this once, on a quiet day</h4>
+        <p>So you're not learning it for the first time during a real emergency. To undo a restore, restore the
+          safety copy it saved automatically before making the swap.</p>
+      </div>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= IMPORT ========================= -->
+    <section class="chapter" id="import">
+      <h2><span class="n">17</span>Bringing over old Access data</h2>
+      <p>Start Menu → Wese~Kwese → <b>Import old Access data into Wese~Kwese</b> — needs the free <b>Microsoft
+        Access Database Engine (64-bit)</b>, and only works while Wese~Kwese is still completely empty. It does a
+        practice run first, shows every warning, and only actually imports once you type <code>YES</code>. Each
+        imported user gets a one-time temporary password, printed once — write them down. It also checks its
+        totals against the old database's own <code>Income</code> and <code>CurrentAcc</code> tables and prints
+        any difference, so you can verify nothing was lost in translation.</p>
+      <p>The old Access database has no idea of multiple currencies, so everything is imported into the school's
+        one default currency — add more under Setup → Currencies afterwards if needed.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= FAQ ========================= -->
+    <section class="chapter" id="faq">
+      <h2><span class="n">18</span>Troubleshooting</h2>
+
+      <h3>"Windows protected your PC" when running the installer</h3>
+      <p>Expected — the installer isn't code-signed yet. Click <b>More info</b>, then <b>Run anyway</b>. Not a
+        sign of a virus.</p>
+
+      <h3>Backup e-mail fails: "server refused the username or password"</h3>
+      <p>You're using a normal Gmail password instead of an app password — see <a href="#backups">Backups</a>
+        above for the full fix.</p>
+
+      <h3>Backup e-mail fails: "mail server hung up"</h3>
+      <p>Port and security type don't match. For Gmail: server <code>smtp.gmail.com</code>, port <code>587</code>,
+        security <b>STARTTLS</b>.</p>
+
+      <h3>Another PC says "That address isn't allowed"</h3>
+      <p>Open <code>C:\ProgramData\SchoolFees\.env</code> as administrator on the server PC, add the new address
+        to <code>ALLOWED_HOSTS</code>, save, then use <b>Restart the Wese~Kwese server</b> from the Start Menu. A
+        fixed IP address for the server PC (set in your router) avoids this happening again.</p>
+
+      <h3>Can't sign in / locked out</h3>
+      <p>An Admin resets it under Users. A username locks for 15 minutes after 5 wrong passwords in a row — an
+        Admin can clear that sooner. If the <i>only</i> Admin is locked out or has forgotten their password, use
+        the Start Menu → <b>Reset a forgotten Wese~Kwese password</b> tool on the server PC.</p>
+
+      <h3>A student's fee category changed mid-term</h3>
+      <p>Not automatic — changing a student's fee category or class partway through a term doesn't re-bill an
+        invoice already generated. Use <b>Adjust fees</b> on the invoice to correct the amount, with a note
+        explaining why.</p>
+    </section>
+    <hr class="sep">
+
+    <!-- ========================= SUPPORT ========================= -->
+    <section class="chapter" id="support">
+      <h2><span class="n">19</span>Support</h2>
+      <p>E-mail <b>wesekwese@gmail.com</b> or call / WhatsApp <b>+263 77 314 1598</b>. When something doesn't look
+        right, the file at <code>C:\ProgramData\SchoolFees\logs\schoolfees.log</code> on the server PC is the
+        first thing worth sending along.</p>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
