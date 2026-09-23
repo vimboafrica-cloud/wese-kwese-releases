@@ -239,8 +239,9 @@
         what each role can do.</p>
 
       <h3>8. Students</h3>
-      <p>Add them one at a time, or use the <a href="#import">Access importer</a> if you're moving off the old
-        system. See <a href="#students">Adding &amp; finding students</a>.</p>
+      <p>Add them one at a time, many at once from <a href="#students">Excel sheets</a>, or use the
+        <a href="#import">Access importer</a> if you're moving off the old system. See
+        <a href="#students">Adding &amp; finding students</a>.</p>
     </section>
     <hr class="sep">
 
@@ -253,6 +254,32 @@
         (two initials plus a running number, e.g. <code>AM00001</code>) and can never be typed in or changed — it's
         not on the form at all. Fill in class, fee category, and <b>Bill fees in</b> (which currency this student
         is invoiced in — see <a href="#currency">Multi-currency</a>).</p>
+
+      <h3>Registering many students at once (Excel sheets)</h3>
+      <p>For a whole school &mdash; especially with one laptop and no network &mdash; don't type pupils in one by one.
+        <span class="path">Students &rarr; Import from sheets</span> (Admin or Bursar) gives each teacher a registration
+        sheet and reads the filled-in sheets back.</p>
+      <ol class="steps">
+        <li>Choose <b>All classes</b> and click <b>Download the sheet</b>: a zip with one Excel file per class, the class
+          already filled in, drop-down lists for gender, class, fee category and currency, and a "How to fill this in" tab.
+          Give each teacher theirs &mdash; a USB stick is safest; please don't send children's details over WhatsApp or e-mail.</li>
+        <li>Teachers type one pupil per row. Only <b>surname, first name, gender and class</b> are required; date of birth
+          (DD/MM/YYYY), addresses, parents, phones, doctor, emergency contact and notes are optional and can be added later.
+          Teachers can leave <b>Fee category</b> blank: you choose it when you upload.</li>
+        <li>Upload the returned files together (Excel .xlsx or CSV) and click <b>Check the sheets</b>. Choose a fee category
+          (and a class, if a sheet has no Class column) for rows that don't say.</li>
+        <li>Read the <b>preview</b>: who will be added, by class; rows with problems (Excel's own row number and the reason);
+          and pupils already in the system, which are skipped. Nothing is saved yet.</li>
+        <li>Click <b>Add ... students</b>. Student numbers are given class by class, alphabetically, continuing after the
+          highest number already used. Then use Invoices &rarr; Generate term invoices to bill them.</li>
+      </ol>
+      <div class="box">
+        <h4>A row had a problem?</h4>
+        <p>Rows with problems are left out; everyone else is added. Fix the sheet and upload it again &mdash; pupils already
+          added are recognised (same name and date of birth, or the same name and class when there is no date) and never
+          added twice. A class list the school already keeps in Excel works too: columns are found by their headings, in any
+          order, and extra columns are ignored.</p>
+      </div>
 
       <h3>Finding a student</h3>
       <p>The <b>Students</b> list searches by name or student number, and filters by class or status. Every
