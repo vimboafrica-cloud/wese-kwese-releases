@@ -30,7 +30,20 @@ through day-to-day use, multi-currency, backups, and troubleshooting.
 [Read it online](https://vimboafrica-cloud.github.io/wese-kwese-releases/user-manual.html)
 or download the file above and open it in any browser.
 
+## Terms of use
+
+Wese~Kwese is free for schools to install and use. It is **not** free to
+resell, rebrand, or redistribute as your own product — see
+[TERMS.md](TERMS.md) for the full terms. If you were charged for this
+software by anyone other than the Wese~Kwese team, or given a copy from
+somewhere other than this repository, please contact us to confirm it's
+genuine.
+
 ## Support
 
 - E-mail: wesekwese@gmail.com
 - Phone / WhatsApp: +263 77 314 1598
+
+---
+
+&copy; 2026 Wese~Kwese team. All rights reserved.
