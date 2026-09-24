@@ -231,7 +231,8 @@
 
       <h3>6. A receipt book</h3>
       <p><span class="path">Setup → Receipt books → Add receipt book.</span> Just a number range, e.g. 1 to 999.
-        Leave <b>Method</b> blank for one book used by every payment method (the normal case) — only set it if this
+        The last number must be higher than the first (for example 1 to 100). Leave <b>Next number</b> blank to start at the first
+        number; if you fill it in, it must lie inside the range. Leave <b>Method</b> blank for one book used by every payment method (the normal case) — only set it if this
         school keeps a separate paper book per payment method.</p>
 
       <h3>7. The other people who'll use it</h3>
@@ -253,7 +254,8 @@
       <p><span class="path">Students → Add student.</span> The <b>student number</b> is generated automatically
         (two initials plus a running number, e.g. <code>AM00001</code>) and can never be typed in or changed — it's
         not on the form at all. Fill in class, fee category, and <b>Bill fees in</b> (which currency this student
-        is invoiced in — see <a href="#currency">Multi-currency</a>).</p>
+        is invoiced in — see <a href="#currency">Multi-currency</a>). A date of birth, if entered, must make the pupil at least
+        2 years old: a date that would make them younger is refused.</p>
 
       <h3>Registering many students at once (Excel sheets)</h3>
       <p>For a whole school &mdash; especially with one laptop and no network &mdash; don't type pupils in one by one.
@@ -451,7 +453,8 @@
         gives every student a <b>Bill fees in</b> currency on their own record.</p>
 
       <h3>Currency mode</h3>
-      <p><span class="path">School details → Currency mode.</span> Decides what happens when a payment doesn't
+      <p><span class="path">Top menu → Currency mode</span> (it appears once a second currency is set up; the Home page also shows the
+        current mode, with a Change button). Decides what happens when a payment doesn't
         match its invoice's currency — switchable at any time as the currency situation changes; switching never
         rewrites a payment already recorded.</p>
       <table class="ref">
