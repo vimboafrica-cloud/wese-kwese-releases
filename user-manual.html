@@ -124,7 +124,7 @@
         <a href="#invoices">Fees &amp; invoices</a>
         <a href="#payments">Taking a payment</a>
         <a href="#reports">Reports</a>
-        <a href="#spending">Spending</a>
+        <a href="#spending">Expenditure</a>
         <a href="#otherincome">Other income</a>
         <a href="#currency">Multi-currency</a>
         <a href="#monthend">Month end</a>
@@ -213,6 +213,24 @@
         opening and closing dates (used for part-term fee calculations later), then tick <b>Is current</b> — new
         invoices and payments default to whichever term is current.</p>
 
+      <div class="box">
+        <h4>Does your school bill monthly?</h4>
+        <p>Most schools bill each term. If yours charges fees each month, choose <b>Fees are billed: each month</b> on the very first
+          page you fill in when you install (or later under <b>School details</b>). A billing period is then a <b>month</b> instead of a
+          term, and every screen, invoice, receipt and report says month. Then:</p>
+        <ul>
+          <li><span class="path">Setup &rarr; Terms and months &rarr; <b>Add a whole year at once</b></span> creates January to December
+            with their dates filled in. Tick <b>Is current</b> on the month you are in.</li>
+          <li>Set the fees for one month (step 5), then <span class="path">Setup &rarr; Fee structures &rarr;
+            <b>Copy fees to other terms or months</b></span>: <b>Tick all</b> and copy, instead of typing them twelve times.
+            Anything already set for a month is left as it is.</li>
+          <li>Each month, <span class="path">Invoices &rarr; <b>Generate month invoices</b></span>.</li>
+        </ul>
+        <p>Changing the setting later never renames existing terms or invoices. <b>Month end</b> in the menu is a different thing: it
+          closes a calendar month's books, and works the same for every school. Parents who pay a term's fees in monthly instalments
+          need no setting at all: a payment can be part of an invoice, and the balance stays on the Debtors report.</p>
+      </div>
+
       <h3>3. Classes</h3>
       <p><span class="path">Setup → Classes → Add class.</span> Give each a name and a <b>Sort order</b> number —
         this controls the order classes are promoted in at the end of the year, so number them from youngest to
@@ -221,7 +239,7 @@
       <h3>4. Fee categories and fee items</h3>
       <p><b>Fee categories</b> group students who pay the same amount (Day Scholar, Boarder, Staff Child...).
         <b>Fee items</b> are what the fees are made of (Tuition, Levy, Building Fund...) — each item is also its
-        own fund account that income and spending are tracked against, so keep the list to what you genuinely want
+        own fund account that income and expenditure are tracked against, so keep the list to what you genuinely want
         to track separately. Both are under <span class="path">Setup</span>.</p>
 
       <h3>5. Fee structures</h3>
@@ -338,7 +356,7 @@
         <p>The amount is capped at what's still owing; the form tells you the limit as you type. Money is split
           across the invoice's fee items in proportion automatically (a $500 payment towards a $500 Tuition +
           $1,500 Levy invoice puts $125 towards Tuition and $375 towards Levy) — this is what feeds the fund
-          balances in <a href="#spending">Spending</a>.</p>
+          balances in <a href="#spending">Expenditure</a>.</p>
       </div>
 
       <h3>Printing and downloading</h3>
@@ -349,7 +367,7 @@
       <h3>Voiding a payment</h3>
       <p>Nothing is ever deleted or edited once money has moved. <span class="path">Payments → (find it) → Void</span>,
         type a reason — the record stays, struck through in lists and exports, with who voided it and why. If some
-        of a receipt's money has already been spent from a fund, voiding is refused until that spending is voided
+        of a receipt's money has already been spent from a fund, voiding is refused until that expenditure is voided
         first, so a fund can never go below zero.</p>
     </section>
     <hr class="sep">
@@ -362,7 +380,7 @@
         <tr><th>Report</th><th>Answers</th></tr>
         <tr><td><b>Debtors</b></td><td>Who still owes money, for a term — filter by class. Every row links straight to Take payment.</td></tr>
         <tr><td><b>Daily cash</b></td><td>How much came in, and how, for any date range — split by payment method and by who received it. Run at the end of every day.</td></tr>
-        <tr><td><b>Funds</b></td><td>What's actually in each fund right now — opening balance, income, spending, closing balance, per fee item.</td></tr>
+        <tr><td><b>Funds</b></td><td>What's actually in each fund right now — opening balance, income, expenditure, closing balance, per fee item.</td></tr>
       </table>
       <p>All three, plus the Home page's own term summary tiles, download as PDF, Word, Excel or CSV. A school
         taking more than one currency sees each currency's figures as its own separate block on every report —
@@ -370,15 +388,23 @@
     </section>
     <hr class="sep">
 
-    <!-- ========================= SPENDING ========================= -->
+    <!-- ========================= EXPENDITURE ========================= -->
     <section class="chapter" id="spending">
-      <h2><span class="n">7</span>Spending</h2>
-      <p>Every fee item doubles as a fund: what's been received for it, less what's been spent from it. <span class="path">Spending → Record spending</span>
+      <h2><span class="n">7</span>Expenditure</h2>
+      <p>Every fee item doubles as a fund: what's been received for it, less what's been spent from it. <span class="path">Expenditure → Record expenditure</span>
         shows each fund's current balance right in the "Spend from fund" list, and <b>you can only spend what a
         fund holds</b> — an over-spend is refused with a message saying exactly how much is available.</p>
-      <p>Voiding a piece of spending puts the money back into the fund. Voiding a <i>receipt</i> whose money has
-        already been spent is refused until that spending is voided first — a fund can never be pushed below
+      <p>Voiding a piece of expenditure puts the money back into the fund. Voiding a <i>receipt</i> whose money has
+        already been spent is refused until that expenditure is voided first — a fund can never be pushed below
         zero.</p>
+      <div class="box">
+        <h4>Spending money from other income</h4>
+        <p>Each kind of <a href="#otherincome">other income</a> (uniform sales, tuck shop, broilers...) is a fund of its own. It
+          appears in the <b>Spend from fund</b> list under <b>Other income funds</b>, with its balance, for as long as it holds money:
+          for example restocking uniforms from uniform sales. The same rules apply as for fee funds: you can only spend what it holds,
+          in the currency it was received in, and income that has been spent cannot be voided until that expenditure is voided first.
+          Once a fund's money is spent it drops off the list; its history stays on the Expenditure page and the Funds report.</p>
+      </div>
     </section>
     <hr class="sep">
 
@@ -483,7 +509,7 @@
     <section class="chapter" id="monthend">
       <h2><span class="n">13</span>Month end</h2>
       <p><span class="path">Money menu → Month end.</span> Closes a calendar month — once closed, nothing (a
-        payment, spending, an adjustment) can be recorded or voided in it until an Admin reopens it. Use this once
+        payment, expenditure, an adjustment) can be recorded or voided in it until an Admin reopens it. Use this once
         a month's books are settled, so nothing gets backdated into them by accident.</p>
     </section>
     <hr class="sep">
@@ -494,7 +520,7 @@
       <table class="ref">
         <tr><th></th><th>Admin</th><th>Bursar</th><th>General</th></tr>
         <tr><td>See students (no money)</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
-        <tr><td>Payments, invoices, reports, spending, other income</td><td>&#10003;</td><td>&#10003;</td><td>—</td></tr>
+        <tr><td>Payments, invoices, reports, expenditure, other income</td><td>&#10003;</td><td>&#10003;</td><td>—</td></tr>
         <tr><td>Void a record (needs a reason), close a month</td><td>&#10003;</td><td>&#10003;</td><td>—</td></tr>
         <tr><td>Reopen a closed month</td><td>&#10003;</td><td>—</td><td>—</td></tr>
         <tr><td>Setup, users, activity log, fee adjustments</td><td>&#10003;</td><td>—</td><td>—</td></tr>
