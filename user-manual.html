@@ -93,8 +93,6 @@
 
   .toc-jump{ font-size:.84rem; color:var(--ink-soft); }
 </style>
-</head>
-<body>
 
 <div class="shell">
   <aside class="side">
@@ -207,6 +205,12 @@
       <p>Menu → <b>School details</b>. Type the school's name exactly as it should appear on receipts, invoices,
         reports and exported files — this is the first thing every fresh install asks for. Address, phone and
         e-mail are optional and also print on documents.</p>
+      <p><b>Your school's logo.</b> Further down the same page, under <b>School logo</b>, choose a PNG or JPG picture
+        of the school's badge and press <b>Upload the logo</b>. It is then printed above the school's name on every
+        receipt, invoice, report and downloaded PDF, Word and Excel file, and shown at the top of every screen and on
+        the sign-in page. The picture is shrunk to a sensible size automatically; a wide or square logo on a plain or
+        see-through background works best. <b>Replace the logo</b> or <b>Remove the logo</b> at any time. (Wese~Kwese's
+        own logo appears in the browser tab and on the sign-in page until the school has uploaded its own.)</p>
 
       <h3>2. The current term</h3>
       <p><span class="path">Menu → <b>Setup</b> → Terms → Add term.</span> Enter the year, the term number, and its
@@ -227,8 +231,8 @@
           <li>Each month, <span class="path">Invoices &rarr; <b>Generate month invoices</b></span>.</li>
         </ul>
         <p>Changing the setting later never renames existing terms or invoices. <b>Month end</b> in the menu is a different thing: it
-          closes a calendar month's books, and works the same for every school. Parents who pay a term's fees in monthly instalments
-          need no setting at all: a payment can be part of an invoice, and the balance stays on the Debtors report.</p>
+          closes a calendar month's books, and works the same for every school. A school whose parents pay a term's fees in monthly
+          instalments does not need to bill monthly: see <a href="#invoices">Fees &amp; invoices</a> for the instalment schedule.</p>
       </div>
 
       <h3>3. Classes</h3>
@@ -328,6 +332,23 @@
         again.</p>
       <p>A single student's invoice can also be created on the spot from their own page, or from the payment
         screen if the term hasn't been billed for them yet.</p>
+
+      <h3>Parents paying in monthly instalments</h3>
+      <p>A payment can always be part of an invoice, and what is left stays on the Debtors report. If parents pay a term's fees in
+        monthly instalments, you can go further: under <span class="path"><b>School details</b></span> choose <b>Parents pay: in
+        monthly instalments</b>. Each term then needs its opening and closing dates (<span class="path">Setup &rarr; Terms and
+        months</span>), from which the system works out one instalment a month &mdash; the first when the term opens, then the 1st of
+        each month until it closes &mdash; each an equal share of the fees.</p>
+      <ul>
+        <li><b>Debtors report:</b> new <b>Due by now</b> and <b>Behind</b> columns, an <b>As at</b> date (today unless you change it)
+          and <b>Only those behind schedule</b>. Downloads carry the same columns.</li>
+        <li><b>A student's page</b> shows the same two columns against each invoice.</li>
+        <li><b>The invoice</b> (which prints) has an <b>Instalment plan</b>: each due date, what should have been paid by then, and where
+          the student stands. Give it to the parent.</li>
+        <li><b>Home</b> says how many students are behind as at today, with a link to them.</li>
+      </ul>
+      <p>Paying ahead is always fine. It does not apply when fees are billed each month, and nothing changes for a school that keeps the
+        default: the whole term's fees due at the start of the term.</p>
 
       <h3>Reducing fees (Admin only)</h3>
       <p>Open the invoice → <b>Adjust fees</b>. Covers a part-term fee for someone who left early, a bursary, a
