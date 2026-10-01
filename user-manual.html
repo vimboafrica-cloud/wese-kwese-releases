@@ -104,6 +104,7 @@
       <nav>
         <a href="#intro">What it is</a>
         <a href="#install">Installing it</a>
+        <a href="#network">Other PCs &amp; access away from school</a>
         <a href="#setup">First-time setup</a>
       </nav>
     </div>
@@ -196,9 +197,44 @@
     </section>
     <hr class="sep">
 
+    <!-- ========================= NETWORK ========================= -->
+    <section class="chapter" id="network">
+      <h2><span class="n">2</span>Other PCs &amp; access away from school</h2>
+      <p class="sub">Two separate things: other computers in the same building, and your own phone or PC somewhere else.</p>
+
+      <h3>Other PCs in the same building</h3>
+      <p>Tick <b>"allow other school PCs through the firewall"</b> when installing (see the table above), or do it
+        at any time afterwards: <span class="path">Start Menu → Wese~Kwese → "Allow other PCs to connect to
+        Wese~Kwese"</span>. It finds this PC's current address and opens the firewall for the local network only —
+        nothing reaches it from outside the building. Run it again whenever the server PC's address changes (a
+        different router, a new hotspot) and other PCs start showing <b>"That address isn't allowed"</b>.</p>
+      <p>This needs <b>no internet connection at all</b> — only something to connect the PCs to each other. A
+        small Wi-Fi router is the sturdier choice where one is available (no battery or data plan to worry about,
+        and it can be given one fixed address and left alone); a phone's hotspot works too if that's all there is.</p>
+
+      <h3>Your own phone or PC away from the school building</h3>
+      <p>This one needs the school to have an internet connection. Install
+        <a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale</a> (free) on the server PC and
+        on your phone or PC, signed into the <b>same account</b> on both, then run
+        <span class="path">Start Menu → Wese~Kwese → "Allow remote access to Wese~Kwese (Tailscale)"</span>. Open
+        Wese~Kwese from the Tailscale address it gives you, from anywhere with internet — wifi or mobile data, hotspot
+        turned off entirely.</p>
+      <p>Both tools can be used together at the same time: other PCs in the building keep using the local address,
+        your own phone elsewhere uses the Tailscale one.</p>
+
+      <div class="box warn">
+        <h4>Never forward the port on your router</h4>
+        <p>Wese~Kwese speaks plain, unencrypted http — fine on a trusted school network, but forwarding the port
+          on your router puts every password and every student's personal and financial details on the open
+          internet, reachable by anyone. Tailscale gives you the same "reach it from anywhere" result without ever
+          opening anything to the internet: it's a private, encrypted link between your own devices only.</p>
+      </div>
+    </section>
+    <hr class="sep">
+
     <!-- ========================= SETUP ========================= -->
     <section class="chapter" id="setup">
-      <h2><span class="n">2</span>First-time setup</h2>
+      <h2><span class="n">3</span>First-time setup</h2>
       <p class="sub">The Home page shows a <b>Getting started</b> checklist until every one of these is done.</p>
 
       <h3>1. School details</h3>
@@ -270,7 +306,7 @@
 
     <!-- ========================= STUDENTS ========================= -->
     <section class="chapter" id="students">
-      <h2><span class="n">3</span>Adding &amp; finding students</h2>
+      <h2><span class="n">4</span>Adding &amp; finding students</h2>
 
       <h3>Adding a student</h3>
       <p><span class="path">Students → Add student.</span> The <b>student number</b> is generated automatically
@@ -322,7 +358,7 @@
 
     <!-- ========================= INVOICES ========================= -->
     <section class="chapter" id="invoices">
-      <h2><span class="n">4</span>Fees &amp; invoices</h2>
+      <h2><span class="n">5</span>Fees &amp; invoices</h2>
 
       <h3>Generating invoices</h3>
       <p><span class="path">Invoices → Generate term invoices.</span> Pick a term and it creates an invoice for
@@ -361,7 +397,7 @@
 
     <!-- ========================= PAYMENTS ========================= -->
     <section class="chapter" id="payments">
-      <h2><span class="n">5</span>Taking a payment</h2>
+      <h2><span class="n">6</span>Taking a payment</h2>
 
       <ol class="steps">
         <li>Find the student and open their page (search by name or student number). <b>Take payment</b> only appears
@@ -398,7 +434,7 @@
 
     <!-- ========================= REPORTS ========================= -->
     <section class="chapter" id="reports">
-      <h2><span class="n">6</span>Reports</h2>
+      <h2><span class="n">7</span>Reports</h2>
 
       <table class="ref">
         <tr><th>Report</th><th>Answers</th></tr>
@@ -425,7 +461,7 @@
 
     <!-- ========================= EXPENDITURE ========================= -->
     <section class="chapter" id="spending">
-      <h2><span class="n">7</span>Expenditure</h2>
+      <h2><span class="n">8</span>Expenditure</h2>
       <p>Every fee item doubles as a fund: what's been received for it, less what's been spent from it. <span class="path">Expenditure → Record expenditure</span>
         shows each fund's current balance right in the "Spend from fund" list, and <b>you can only spend what a
         fund holds</b> — an over-spend is refused with a message saying exactly how much is available.</p>
@@ -445,7 +481,7 @@
 
     <!-- ========================= OTHER INCOME ========================= -->
     <section class="chapter" id="otherincome">
-      <h2><span class="n">8</span>Other income</h2>
+      <h2><span class="n">9</span>Other income</h2>
       <p>Money that isn't school fees — uniform sales, hall hire, that kind of thing. <span class="path">Other income → Record other income</span>,
         choosing a category from a list rather than typing one, so the same thing is always spelled the same way
         in reports. No category yet? Click <b>Add other income category</b> right there on the form — nothing
@@ -455,7 +491,7 @@
 
     <!-- ========================= LEAVING ========================= -->
     <section class="chapter" id="leaving">
-      <h2><span class="n">9</span>When a student leaves</h2>
+      <h2><span class="n">10</span>When a student leaves</h2>
       <p>Nobody is ever deleted — their receipts have to stay on record. Open the student and click <b>Record leaving</b>
         instead.</p>
 
@@ -484,7 +520,7 @@
 
     <!-- ========================= PROMOTION ========================= -->
     <section class="chapter" id="promotion">
-      <h2><span class="n">10</span>End-of-year promotion</h2>
+      <h2><span class="n">11</span>End-of-year promotion</h2>
       <p><span class="path">Students → End-of-year promotion.</span> Moves every class up in one go: each class
         gets a suggested destination (the next class by the Sort order set under Setup → Classes, or the last
         class finishing school), you tick anyone repeating the year, review the whole plan, and confirm. Nothing
@@ -497,7 +533,7 @@
 
     <!-- ========================= OLD RECORDS ========================= -->
     <section class="chapter" id="oldrecords">
-      <h2><span class="n">11</span>Old records <span style="font-weight:400; font-size:.7em; color:var(--ink-soft)">(Admin only)</span></h2>
+      <h2><span class="n">12</span>Old records <span style="font-weight:400; font-size:.7em; color:var(--ink-soft)">(Admin only)</span></h2>
       <p><span class="path">Students → Old records.</span> Sets how long former students' personal details (name,
         birth date, address, parents, phone, doctor, notes) are kept after they leave — default 7 years. Past that
         period, and only once a student owes nothing, an Admin can erase their personal details in bulk, or erase
@@ -510,7 +546,7 @@
 
     <!-- ========================= CURRENCY ========================= -->
     <section class="chapter" id="currency">
-      <h2><span class="n">12</span>Multi-currency</h2>
+      <h2><span class="n">13</span>Multi-currency</h2>
       <p>Most schools need only the one currency, already set up. A school that takes more than one (USD and ZiG,
         say) adds a row per currency under <span class="path">Setup → Currencies</span> (code, symbol, and which
         one is the default), then sets up a fee structure in each currency for the same category and term, and
@@ -542,7 +578,7 @@
 
     <!-- ========================= MONTH END ========================= -->
     <section class="chapter" id="monthend">
-      <h2><span class="n">13</span>Month end</h2>
+      <h2><span class="n">14</span>Month end</h2>
       <p><span class="path">Money menu → Month end.</span> Closes a calendar month — once closed, nothing (a
         payment, expenditure, an adjustment) can be recorded or voided in it until an Admin reopens it. Use this once
         a month's books are settled, so nothing gets backdated into them by accident.</p>
@@ -551,7 +587,7 @@
 
     <!-- ========================= USERS ========================= -->
     <section class="chapter" id="users">
-      <h2><span class="n">14</span>Users &amp; roles</h2>
+      <h2><span class="n">15</span>Users &amp; roles</h2>
       <table class="ref">
         <tr><th></th><th>Admin</th><th>Bursar</th><th>General</th></tr>
         <tr><td>See students (no money)</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
@@ -574,7 +610,7 @@
 
     <!-- ========================= BACKUPS ========================= -->
     <section class="chapter" id="backups">
-      <h2><span class="n">15</span>Backups</h2>
+      <h2><span class="n">16</span>Backups</h2>
       <p>A backup runs automatically every day at 17:00 (the newest 30 are kept), and <span class="path">Backups → Back up now</span>
         makes one on demand any time — worth doing right before something like an upgrade.</p>
 
@@ -610,7 +646,7 @@
 
     <!-- ========================= RESTORE ========================= -->
     <section class="chapter" id="restore">
-      <h2><span class="n">16</span>Restoring a backup</h2>
+      <h2><span class="n">17</span>Restoring a backup</h2>
       <p>On the server PC: Start Menu → Wese~Kwese → <b>Restore a Wese~Kwese backup</b> (needs Windows
         administrator permission, since it's about to replace the live data — not done from inside the app
         itself).</p>
@@ -633,7 +669,7 @@
 
     <!-- ========================= IMPORT ========================= -->
     <section class="chapter" id="import">
-      <h2><span class="n">17</span>Bringing over old Access data</h2>
+      <h2><span class="n">18</span>Bringing over old Access data</h2>
       <p>Start Menu → Wese~Kwese → <b>Import old Access data into Wese~Kwese</b> — needs the free <b>Microsoft
         Access Database Engine (64-bit)</b>, and only works while Wese~Kwese is still completely empty. It does a
         practice run first, shows every warning, and only actually imports once you type <code>YES</code>. Each
@@ -647,7 +683,7 @@
 
     <!-- ========================= FAQ ========================= -->
     <section class="chapter" id="faq">
-      <h2><span class="n">18</span>Troubleshooting</h2>
+      <h2><span class="n">19</span>Troubleshooting</h2>
 
       <h3>"Windows protected your PC" when running the installer</h3>
       <p>Expected — the installer isn't code-signed yet. Click <b>More info</b>, then <b>Run anyway</b>. Not a
@@ -662,9 +698,13 @@
         security <b>STARTTLS</b>.</p>
 
       <h3>Another PC says "That address isn't allowed"</h3>
-      <p>Open <code>C:\ProgramData\SchoolFees\.env</code> as administrator on the server PC, add the new address
-        to <code>ALLOWED_HOSTS</code>, save, then use <b>Restart the Wese~Kwese server</b> from the Start Menu. A
-        fixed IP address for the server PC (set in your router) avoids this happening again.</p>
+      <p>Run <span class="path">Start Menu → Wese~Kwese → "Allow other PCs to connect to Wese~Kwese"</span> on the
+        server PC — it re-detects the current address and restarts the server for you. A fixed IP address for the
+        server PC (set in your router) avoids this happening again. See
+        <a href="#network">Other PCs &amp; access away from school</a> for the full picture, including access from
+        outside the building. (By hand, instead: open <code>C:\ProgramData\SchoolFees\.env</code> as administrator,
+        add the new address to <code>ALLOWED_HOSTS</code>, save, then restart the server the same way — but never
+        edit the copy of this setting inside the app's own Program Files folder, which the next update overwrites.)</p>
 
       <h3>Can't sign in / locked out</h3>
       <p>An Admin resets it under Users. A username locks for 15 minutes after 5 wrong passwords in a row — an
@@ -680,7 +720,7 @@
 
     <!-- ========================= SUPPORT ========================= -->
     <section class="chapter" id="support">
-      <h2><span class="n">19</span>Support</h2>
+      <h2><span class="n">20</span>Support</h2>
       <p>E-mail <b>wesekwese@gmail.com</b> or call / WhatsApp <b>+263 77 314 1598</b>. When something doesn't look
         right, the file at <code>C:\ProgramData\SchoolFees\logs\schoolfees.log</code> on the server PC is the
         first thing worth sending along.</p>
