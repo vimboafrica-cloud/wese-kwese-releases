@@ -37,8 +37,10 @@ or download the file above and open it in any browser.
 
 ## Terms of use
 
-Wese~Kwese is free for schools to install and use. It is **not** free to
-resell, rebrand, or redistribute as your own product — see
+Wese~Kwese is free for a school with 30 active students or fewer, for as
+long as it's used. A bigger school gets a free 3-month trial, after which
+it needs a license key to keep going — contact us below to get one. It is
+**not** free to resell, rebrand, or redistribute as your own product — see
 [TERMS.md](TERMS.md) for the full terms. If you were charged for this
 software by anyone other than the Wese~Kwese team, or given a copy from
 somewhere other than this repository, please contact us to confirm it's
