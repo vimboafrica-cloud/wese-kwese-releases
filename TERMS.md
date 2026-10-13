@@ -2,7 +2,7 @@
 
 _Last updated: 23 September 2026_
 
-Wese~Kwese is provided free of charge to schools, by the Wese~Kwese team
+Wese~Kwese is provided free of charge to schools, by the Wese\~Kwese team
 (wesekwese@gmail.com &middot; +263 77 314 1598).
 
 ## You may
@@ -24,7 +24,7 @@ Wese~Kwese is provided free of charge to schools, by the Wese~Kwese team
 ## Ownership
 
 Wese~Kwese, including its source code, design and documentation, is
-&copy; 2026 the Wese~Kwese team. All rights are reserved except for the free
+&copy; 2026 the Wese\~Kwese team. All rights are reserved except for the free
 use described above.
 
 ## No warranty
