@@ -42,7 +42,7 @@ long as it's used. A bigger school gets a free 3-month trial, after which
 it needs a license key to keep going — contact us below to get one. It is
 **not** free to resell, rebrand, or redistribute as your own product — see
 [TERMS.md](TERMS.md) for the full terms. If you were charged for this
-software by anyone other than the Wese~Kwese team, or given a copy from
+software by anyone other than the Wese\~Kwese team, or given a copy from
 somewhere other than this repository, please contact us to confirm it's
 genuine.
 
